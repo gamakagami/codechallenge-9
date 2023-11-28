@@ -1,11 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Smooth Page Transition</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>sabar</h1>
+
+    <div class="page" id="page1">
+        <style>
+            body {
+                background-color: burlywood;
+            }
+
+            .row {
+                background-color: wheat;
+            }
+        </style>
+        <div class="container-fluid p-5 bg-primary text-white text-center">
+            <h1>Gabriel Anderson</h1>
+            <h3>
+                Hello, My name is Gabriel Anderson.
+                I am a freshman at Binus University</h3>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <center><img src="pfp.jpg" width=auto height=400 alt="Gabriel"></center>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="page-link" data-target="page2">About me</a>
+    </div>
+
+    <div class="page" id="page2">
+        <div class="container-fluid p-5 bg-primary text-white text-center">
+            <h1>Gabriel Anderson</h1>
+            <h3>Information about me</h3>
+          </div>
+          <div class="container mt-5">
+            <div class="row">
+              <div class="col-sm-4 1">
+                  <img src="pfp.jpg"  width=auto   height=400 alt="Gabriel">
+              </div>
+              <div class="col-sm-4">
+                  Name : Gabriel Anderson
+                  <br>
+                  <br>
+                  Nim : 2702256315<br><br>
+                  Major : Computer science<br><br>    
+                  Class : L1AC
+                  <br><br>
+                  Gender : <input  type="radio" name="m" checked   ><label>Male</label>
+                  <input  type="radio" name="m"><label>Female</label>
+                  <br><br>
+                  Programming : <input type="checkbox" checked><label>Python</label>
+                  <input type="checkbox" checked><label>CSS</label>    
+                  <input type="checkbox" checked><label>HTML</label> 
+                  <br><br>
+                  Hobbies :<br> Playing games<br>
+                  Watching anime<br>
+                  Playing badminton<br><br>
+                          Favorite food : Ramen<br><br>
+                          Mental state : &#128128
+              </div>
+              <div class="col-sm-4">
+              </div>
+            </div>
+          </div>
+        <a href="#" class="page-link" data-target="page1">Portfolio</a>
+    </div>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .page {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding-top: 50px;
+            box-sizing: border-box;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .page-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+  
+            $('#page1').addClass('active');
+
+         
+            $('.page-link').on('click', function (e) {
+                e.preventDefault();
+
+               
+                var targetPageId = $(this).data('target');
+
+                
+                $('.page.active').fadeOut(500, function () {
+                   
+                    $(this).removeClass('active');
+
+                
+                    $('#' + targetPageId).addClass('active').fadeIn(500);
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
